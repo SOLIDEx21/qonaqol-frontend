@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import QueryProvider from "@/providers/QueryProvider";
+import NextTopLoader from 'nextjs-toploader';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900`}
       >
+        <NextTopLoader color="#ef4444" showSpinner={false} />
         <QueryProvider>
           <div className="flex flex-col min-h-screen bg-white">
             <Navbar />

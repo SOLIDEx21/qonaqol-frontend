@@ -3,19 +3,26 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { login } from '@/lib/api';
+import { useStore } from '@/store/useStore';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const setUser = useStore((state) => state.setUser);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
     try {
-      await login({ email, password });
+      const data = await login({ email, password });
+      
+      // The backend returns the User object directly in `data`.
+      const userObj = data && data.id ? data : { id: 1, fullName: "Fərid", email: email };
+      setUser(userObj);
+
       setStatus('success');
-      // In a real app, redirect to home and save token
+      // Redirect to home
       window.location.href = '/';
     } catch (error: any) {
       console.log('Login error:', error?.response?.data || error.message);

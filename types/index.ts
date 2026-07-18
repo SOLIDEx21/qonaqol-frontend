@@ -1,10 +1,21 @@
 export interface Property {
   id: number;
-  title: string;
+  name: string;
   description: string;
-  location: string;
-  pricePerNight: number;
+  address: string;
+  city: string;
+  ownerId?: number;
+  propertyType?: string;
+  dailyPrice?: number;
+  roomLayout?: string;
+  // Frontend only
   imageUrl?: string;
+  images?: string[];
+  amenities?: string[];
+  // Reviews & trust
+  rating?: number;
+  reviewCount?: number;
+  isSuperhost?: boolean;
 }
 
 export interface Room {
@@ -12,13 +23,14 @@ export interface Room {
   propertyId: number;
   roomType: string;
   capacity: number;
-  price: number;
+  price?: number;
+  pricePerNight?: number;
 }
 
 export interface ReservationRequest {
   propertyId: number;
   roomId?: number;
-  guestId?: number;
+  userId?: number;
   checkInDate: string;
   checkOutDate: string;
   numberOfGuests: number;
@@ -37,7 +49,6 @@ export interface Reservation {
 
 export interface User {
   id: number;
-  firstName: string;
-  lastName: string;
+  fullName: string;
   email: string;
 }

@@ -16,4 +16,21 @@
   color-scheme: light;
 }
 
-
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+  background: #ef4444; /* Tailwind red-500 */
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #dc2626; /* Tailwind red-600 */
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ef4444 #f1f1f1;
+}

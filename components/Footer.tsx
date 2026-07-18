@@ -20,7 +20,7 @@ export default function Footer() {
           {/* Column 2 */}
           <div className="flex flex-col space-y-4">
             <h3 className="font-semibold text-lg">Ev Sahibliyi</h3>
-            <Link href="#" className="text-gray-600 hover:text-gray-900 transition text-sm">Evinizi QonaqOl-a köçürün</Link>
+            <Link href="#" className="text-gray-600 hover:text-gray-900 transition text-sm">Elan əlavə et</Link>
             <Link href="#" className="text-gray-600 hover:text-gray-900 transition text-sm">Ev sahibləri üçün QonaqOlCover</Link>
             <Link href="#" className="text-gray-600 hover:text-gray-900 transition text-sm">Ev sahibliyi resursları</Link>
             <Link href="#" className="text-gray-600 hover:text-gray-900 transition text-sm">İcma forumu</Link>

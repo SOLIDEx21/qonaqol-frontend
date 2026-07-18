@@ -22,19 +22,21 @@ export default function PropertyGrid() {
   if (isError) {
     return (
       <div className="py-20 text-center">
-        <p className="text-red-500 font-medium">Mülkler yüklenirken bir hata oluştu.</p>
-        <p className="text-gray-500 text-sm mt-2">Lütfen backend servisinin çalıştığından emin olun.</p>
+        <p className="text-red-500 font-medium">Elanlar yüklənərkən xəta baş verdi.</p>
+        <p className="text-gray-500 text-sm mt-2">Zəhmət olmasa backend servisinin işlədiyindən əmin olun.</p>
       </div>
     );
   }
 
-  // Handle empty state or fallback data
-  const data = properties && properties.length > 0 ? properties : getMockProperties();
+  // Handle empty state
+  const data = properties || [];
 
   // Simple client-side filtering based on Zustand store
   const filteredData = data.filter((prop) => {
-    const matchesSearch = prop.location.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          prop.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const loc = prop.city || prop.address || '';
+    const name = prop.name || '';
+    const matchesSearch = loc.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          name.toLowerCase().includes(searchQuery.toLowerCase());
     // For demo purposes, we randomly assign a category logic, 
     // or just assume all match if a category is selected since we don't have category in Property DTO
     return matchesSearch; 
@@ -43,8 +45,8 @@ export default function PropertyGrid() {
   if (filteredData.length === 0) {
     return (
       <div className="py-20 text-center">
-        <p className="text-gray-900 font-semibold text-xl">Eşleşen sonuç bulunamadı</p>
-        <p className="text-gray-500 mt-2">Arama kriterlerinizi değiştirmeyi deneyin.</p>
+        <p className="text-gray-900 font-semibold text-xl">Heç bir nəticə tapılmadı</p>
+        <p className="text-gray-500 mt-2">Axtarış kriteriyalarınızı dəyişdirməyi sınayın.</p>
       </div>
     );
   }
@@ -60,39 +62,4 @@ export default function PropertyGrid() {
   );
 }
 
-function getMockProperties(): Property[] {
-  return [
-    {
-      id: 1,
-      title: "Modern Sea View Villa",
-      description: "A beautiful villa.",
-      location: "Antalya, Turkey",
-      pricePerNight: 2500,
-      imageUrl: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800",
-    },
-    {
-      id: 2,
-      title: "Cozy Mountain Cabin",
-      description: "Perfect for winter.",
-      location: "Bursa, Turkey",
-      pricePerNight: 1200,
-      imageUrl: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&q=80&w=800",
-    },
-    {
-      id: 3,
-      title: "Luxury City Apartment",
-      description: "Heart of the city.",
-      location: "Istanbul, Turkey",
-      pricePerNight: 3000,
-      imageUrl: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800",
-    },
-    {
-      id: 4,
-      title: "Beachfront Bungalow",
-      description: "Step right onto the sand.",
-      location: "Bodrum, Turkey",
-      pricePerNight: 4500,
-      imageUrl: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&q=80&w=800",
-    },
-  ];
-}
+

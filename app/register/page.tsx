@@ -15,7 +15,8 @@ export default function RegisterPage() {
     e.preventDefault();
     setStatus('loading');
     try {
-      await register({ firstName, lastName, email, password });
+      const fullName = `${firstName} ${lastName}`.trim();
+      await register({ fullName, email, password });
       setStatus('success');
       // In a real app, redirect to login
       window.location.href = '/login';
